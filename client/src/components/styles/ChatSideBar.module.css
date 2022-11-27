@@ -1,0 +1,30 @@
+.chatTab {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 15px;
+    overflow: auto;
+    color: #a9a9a9;
+}
+
+.selectChat {
+    width:100%;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    padding-left: 10px;
+}
+
+.selectChat:hover {
+    background-color: 	#424549;
+    color: white;
+}
+
+.fakeImg {
+    background-color: darkgreen;
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    margin-right: 15px;
+}

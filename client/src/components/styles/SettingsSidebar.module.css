@@ -1,0 +1,31 @@
+
+.container { 
+    width: 100%;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: #a9a9a9;
+}
+
+.infoInput {
+    background-color: #1F1F25;
+    border: none;
+    height: 30px;
+    border-radius: 10px;
+    width: 80%;
+    color: white;
+    margin-top: 5px;
+    margin-bottom: 15px;
+    font-size: large;
+    padding-left: 10px;
+}
+
+.fakeImg {
+    height: 100px;
+    width: 100px;
+    border-radius: 50%;
+    background-color: green;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}

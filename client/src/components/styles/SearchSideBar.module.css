@@ -1,0 +1,42 @@
+.container {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 15px;
+    overflow: auto;
+    color: #a9a9a9;
+}
+
+.container > input {
+    width: 100%;
+    height: 30px;
+    background-color: #1F1F25;
+    border: none;
+    border-radius: 10px;
+    font-size: large;
+    padding-left: 10px;
+    color: white;
+}
+
+
+.user {
+    width:100%;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    padding-left: 10px;
+}
+
+.user:hover {
+    background-color: 	#424549;
+    color: white;
+}
+
+.fakeImg {
+    background-color: darkgreen;
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    margin-right: 15px;
+}

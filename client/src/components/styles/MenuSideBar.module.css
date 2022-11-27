@@ -1,0 +1,30 @@
+
+.container {
+
+    height: 100%;
+    background-color: #1F1F25;
+    display: flex;
+    justify-content: center;
+}
+
+
+.icon_background {
+    width: 50px;
+    height: 50px;
+    display: flex;
+    background-color: #303038;
+    justify-content: center;
+    align-items: center;
+    margin: 10px;
+    border-radius: 8px;
+}
+
+.icon_background:hover {
+    cursor: pointer;
+}
+
+.icon {
+    width: 80%;
+    height: 80%;
+}
+
