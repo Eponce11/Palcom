@@ -2,13 +2,13 @@ import express, { Application } from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv';
 import cookieParser from 'cookie-parser';
-import { createServer } from 'http';
+// import { createServer } from 'http';
 
 
 const app: Application = express();
 const PORT: Number = 8000;
 const DB: String = "PalCom_db"
-const httpServer = createServer(app);
+// const httpServer = createServer(app);
 
 // middleware
 dotenv.config();
@@ -24,13 +24,16 @@ require("./config/mongoose.config")(DB);
 require("./routes/user.routes")(app);
 require("./routes/message.routes")(app);
 
+
+const server = app.listen(PORT, () => console.log(`Listening on port: ${PORT}`));
+
 // connect the websocket server
-require("./webSockets")(httpServer);
+require("./webSockets")(server);
 
 
 
 
-httpServer.listen(PORT, () => console.log(`Listening on port: ${PORT}`));
+// httpServer.listen(PORT, () => console.log(`Listening on port: ${PORT}`));
 
 
 

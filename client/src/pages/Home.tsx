@@ -1,16 +1,24 @@
-import React, { useState } from "react";
-
+import { useState, useEffect  } from "react";
+import { Outlet } from "react-router-dom";
 
 import MenuSideBar from "../components/MenuSideBar";
-import ChatSideBar from "../components/ChatSideBar";
-import SettingsSidebar from "../components/SettingsSidebar";
-import SearchSideBar from "../components/SearchSideBar";
 
 import styles from './styles/Home.module.css';
 import axios from "axios";
 
 import { RootState } from "../app/store";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { addCurrentChatMessage } from "../features/currentChatUserSlice";
+
+import { io } from "socket.io-client";
+
+
+interface sentMessage {
+    message: string,
+    to: string,
+    from: string
+}
+
 
 const Home = () => {
 
@@ -20,31 +28,48 @@ const Home = () => {
     const currentChatUser = useSelector((state:RootState) => state.currentChatUser)
     const signedInUser = useSelector((state:RootState) => state.signedInUser)
 
-    /*
+    
     const [socket] = useState(() => io(':8000'))
 
+    const dispatch = useDispatch();
     
     useEffect(() => {
-
         socket.on("connect", () => {
-            console.log(socket.id)
+            socket.emit("add-user", signedInUser.id);
         })  
     
+    },[socket, signedInUser])
 
-    },[])
-    */
+    useEffect(() => {
+        if (socket) {
+            socket.on("msg-receive", (msg) => {
+                dispatch(addCurrentChatMessage({
+                    fromSelf: false,
+                    text: msg
+                }))
+            })
+        }
+    },[socket, dispatch])
+    
 
 
     const sendMessage = () => {
 
-        const data: object = {
+
+        const data: sentMessage = {
             message: message,
-            to: currentChatUser.id
+            to: currentChatUser.id,
+            from: signedInUser.id
         }
 
         axios.post("http://localhost:8000/api/message/create", data, { withCredentials: true })
             .then( (res) => {
                 console.log(res.data)
+                socket.emit("send-msg", data);
+                dispatch(addCurrentChatMessage({
+                    fromSelf: true,
+                    text: data.message
+                }))
                 setMessage('');
             })
             .catch( (err) => console.log(err))
@@ -68,8 +93,10 @@ const Home = () => {
                     <div className={styles.sideBarHeader}>
                         
                     </div>
+                    
 
-                    <SettingsSidebar/>
+
+                    <Outlet />
 
                     <div className={styles.userInfo}>
                         <div className={styles.fakeImg}></div>

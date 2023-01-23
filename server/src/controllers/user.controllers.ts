@@ -77,9 +77,28 @@ export const updateUserInfo = asyncHandler(async (req:Request, res:Response): Pr
     
     const loggedInUserId = getTokenId(req.cookies.userToken);
 
-    const loggedInUser = User.findById(loggedInUserId);
-    
+    const duplicateInfoUsers = await User.find({
+        $and: [
+            { _id: { $ne: loggedInUserId } },
+            { $or: [
+                { email: email },
+                { username: username }
+            ]}
+        ]
+    })
 
+    if (duplicateInfoUsers.length > 0) {
+        const errors: any = {};
+        for (const user of duplicateInfoUsers) {
+            if (user.username === username) errors.username = { message: "in use" };
+            if (user.email === email) errors.email = { message: "in use" }
+        }
+        return res.status(400).json(errors)
+    }
+
+
+    // return res.json({ msg: "Message" })
+    
     User.findByIdAndUpdate(
         { _id: loggedInUserId },
         { 
@@ -93,16 +112,11 @@ export const updateUserInfo = asyncHandler(async (req:Request, res:Response): Pr
         .then( (updatedUser) => {
             return res.json({
                 username: updatedUser?.username,
-                firstName: updatedUser?.firstName,
-                lastName: updatedUser?.lastName,
-                updatedUser: updatedUser?.email
             })
         })
         .catch( (err) => {
-            return res.status(400).json({ error: err })
+            return res.status(400).json(err.errors)
         })
-
-
 
 })
 

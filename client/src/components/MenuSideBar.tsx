@@ -37,9 +37,9 @@ const MenuSideBar = () => {
         <IconContext.Provider value={{size: "80%", color: "#06A382"}}>
             <div className={styles.container}>
                 <ul>
-                    <li className={styles.icon_background}><AiFillWechat/></li>
-                    <li className={styles.icon_background}><IoAddCircle/></li>
-                    <li className={styles.icon_background}><RiSettings3Fill/></li>
+                    <li className={styles.icon_background} onClick={ () => navigate("/home/chats") } ><AiFillWechat/></li>
+                    <li className={styles.icon_background} onClick={ () => navigate("/home/search") } ><IoAddCircle/></li>
+                    <li className={styles.icon_background} onClick={ () => navigate("/home/settings") } ><RiSettings3Fill/></li>
                     <li className={styles.icon_background} onClick={handleLogout}><BiLogOut/></li>
                 </ul>
             </div>

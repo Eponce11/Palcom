@@ -4,6 +4,9 @@ import styles from "./styles/SettingsSidebar.module.css"
 
 import axios from "axios";
 
+import { useDispatch } from "react-redux";
+
+import { setSignedInUserUsername } from "../features/signedInUserSlice"
 
 
 interface userInfo {
@@ -22,8 +25,12 @@ const SettingsSidebar = () => {
         lastName: '',
         email: ''
     })
+
+    const [errors, setErrors] = useState<{[key: string]: any}>({});
     
     const { username, firstName, lastName, email } = userData;
+
+    const dispatch = useDispatch();
 
     useEffect( () => {
         axios.get('http://localhost:8000/api/user/getUserInfo', { withCredentials: true })
@@ -48,9 +55,10 @@ const SettingsSidebar = () => {
         axios.put('http://localhost:8000/api/user/update', userData, { withCredentials: true })
             .then( (res) => {
                 console.log(res.data)
+                dispatch(setSignedInUserUsername(res.data.username))
             })
             .catch( (error) => {
-                console.log(error.response.data)
+                setErrors(error.response.data)
             })
     }
 
@@ -58,12 +66,32 @@ const SettingsSidebar = () => {
         <div className={styles.container}>
             <div className={styles.fakeImg}></div>
             <h3>Username:</h3>
+            {
+                errors.hasOwnProperty("username") ?
+                <span>{errors.username.message}</span> :
+                <i></i>
+            }
             <input name="username" className={styles.infoInput} type="text" value={username} onChange={onChange}/>
             <h3>First Name:</h3>
+            {
+                errors.hasOwnProperty("firstName") ?
+                <span>{errors.firstName.message}</span> :
+                <i></i>
+            }
             <input name="firstName" className={styles.infoInput} type="text" value={firstName} onChange={onChange}/>
             <h3>Last Name:</h3>
+            {
+                errors.hasOwnProperty("lastName") ?
+                <span>{errors.lastName.message}</span> :
+                <i></i>
+            }
             <input name="lastName"className={styles.infoInput} type="text" value={lastName} onChange={onChange}/>
             <h3>Email:</h3>
+            {
+                errors.hasOwnProperty("email") ?
+                <span>{errors.email.message}</span> :
+                <i></i>
+            }
             <input name="email" className={styles.infoInput} type="text" value={email} onChange={onChange}/>
             <button onClick={updateUser}>Update</button>
         </div>

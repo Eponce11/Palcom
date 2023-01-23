@@ -21,6 +21,9 @@ export const signedInUserSlice = createSlice({
             state.id = action.payload.id
             state.username = action.payload.username
         },
+        setSignedInUserUsername: (state, action:PayloadAction<string>) => {
+            state.username = action.payload
+        },
         resetSignedInUser: (state) => {
             state.id = initialState.id
             state.username = initialState.username
@@ -29,6 +32,6 @@ export const signedInUserSlice = createSlice({
 })
 
 
-export const { setSignedInUser, resetSignedInUser } = signedInUserSlice.actions
+export const { setSignedInUser, setSignedInUserUsername, resetSignedInUser } = signedInUserSlice.actions
 
 export default signedInUserSlice.reducer

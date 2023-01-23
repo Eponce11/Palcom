@@ -19,6 +19,15 @@
     color: white;
 }
 
+.container > button {
+    width: 80%;
+    height: 30px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border-radius: 10px;
+    border: none;
+    font-size: large;
+}
 
 .user {
     width:100%;
@@ -39,4 +48,9 @@
     height: 35px;
     border-radius: 50%;
     margin-right: 15px;
+}
+
+.icon {
+    position: relative;
+    left: 30%;
 }

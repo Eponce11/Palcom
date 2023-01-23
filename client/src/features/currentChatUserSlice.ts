@@ -25,6 +25,9 @@ export const currentChatUserSlice = createSlice({
             state.username = action.payload.username
             state.messages = action.payload.messages
         },
+        addCurrentChatMessage: (state, action:PayloadAction<object>) => {
+            state.messages = [action.payload, ...state.messages]
+        },
         resetCurrentChatUser: (state) => {
             state.id = initialState.id
             state.username = initialState.username
@@ -34,6 +37,6 @@ export const currentChatUserSlice = createSlice({
 })
 
 
-export const { setCurrentChatUser, resetCurrentChatUser } = currentChatUserSlice.actions
+export const { setCurrentChatUser, addCurrentChatMessage, resetCurrentChatUser } = currentChatUserSlice.actions
 
 export default currentChatUserSlice.reducer

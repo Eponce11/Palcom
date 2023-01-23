@@ -3,16 +3,18 @@ import React, { useState } from 'react';
 import styles from './styles/SearchSideBar.module.css'
 import axios from 'axios';
 
+import { VscAdd } from 'react-icons/vsc'
+
 const SearchSideBar = () => {
 
     const [user, setUser] = useState<{[key: string]: any}>({}) 
     const [searchUsername, setSearchUsername] = useState<string>("");
     const [error, setError] = useState<string>("");
+    const [message, setMessage] = useState<string>("");
 
 
     const searchForUser = (e:any) => {
         e.preventDefault()
-
         axios.post("http://localhost:8000/api/user/findUser", { username: searchUsername }, { withCredentials: true })
             .then( (res) => {
                 setError("")
@@ -23,8 +25,18 @@ const SearchSideBar = () => {
                 setUser({});
                 setError(error.response.data.error);
             })
+    }
 
-
+    const startChat = (id: string) => {
+        axios.post("http://localhost:8000/api/user/startChat", { id: id }, { withCredentials: true } )
+            .then( (res) => {
+                console.log(res.data)
+                setMessage(res.data.message)
+            })
+            .catch( (error) => {
+                console.log(error.response.data)
+                setMessage(error.response.data.error)
+            })
     }
 
     return (
@@ -37,9 +49,11 @@ const SearchSideBar = () => {
                     <div className={styles.user}>
                         <div className={styles.fakeImg}></div>
                         <h3>{ user.username }</h3>
+                        <VscAdd className={styles.icon} onClick={ () => startChat(user.id) }></VscAdd>
                     </div> :
                     <></>
             }
+            <p>{ message }</p>
         </div>
         
     )

@@ -11,6 +11,8 @@ import RegisterPage from './pages/RegisterPage';
 import Home from './pages/Home';
 
 import ChatSideBar from './components/ChatSideBar';
+import SettingsSidebar from './components/SettingsSidebar';
+import SearchSideBar from './components/SearchSideBar';
 
 import PrivateRoutes from './components/PrivateRoutes';
 
@@ -21,17 +23,16 @@ function App() {
         <Routes>
 
         <Route element={<PrivateRoutes />}>
-
-          <Route path="/home" element={<Home />} />
-            
-
+          <Route path="/home" element={<Home />}>
+            <Route path="/home/chats" element={<ChatSideBar/>}/>
+            <Route path="/home/settings" element={<SettingsSidebar/>}/>
+            <Route path="/home/search" element={<SearchSideBar/>}/>
+          </Route>
         </Route>
 
         <Route path="/register" element={<RegisterPage/>} />
 
-
         <Route path="/" element={<LoginPage/>} />
-          
 
         </Routes>
       </Router>
