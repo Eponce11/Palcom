@@ -60,7 +60,7 @@ const RegisterPage = () => {
         axios.post('http://localhost:8000/api/user/register', formData)
             .then( (res) => {
                 console.log(res.data);
-                navigate("/home");
+                navigate("/home/chats");
             })
             .catch( (error) => {
                 console.log(error.response.data)

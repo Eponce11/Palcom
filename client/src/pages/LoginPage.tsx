@@ -5,7 +5,6 @@ import axios from "axios";
 
 import styles from './styles/LoginPage.module.css';
 
-
 import { useDispatch } from "react-redux";
 import { setSignedInUser } from "../features/signedInUserSlice";
 import type { signedInUserState } from "../features/signedInUserSlice";
@@ -45,7 +44,7 @@ const LoginPage = () => {
                     username: res.data.username 
                 }
                 dispatch(setSignedInUser(signedInUser))
-                navigate("/home")
+                navigate("/home/chats")
             })
             .catch( (error) =>  setError(error.response.data.error));
     }
