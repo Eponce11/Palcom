@@ -4,6 +4,8 @@ import styles from "./styles/SettingsSidebar.module.css"
 
 import axios from "axios";
 
+import userPic from "../static/User.png"
+
 import { useDispatch } from "react-redux";
 
 import { setSignedInUserUsername } from "../features/signedInUserSlice"
@@ -64,7 +66,7 @@ const SettingsSidebar = () => {
 
     return (
         <div className={styles.container}>
-            <div className={styles.fakeImg}></div>
+            <img src={userPic} alt="" className={styles.fakeImg}/>
             <h3>Username:</h3>
             {
                 errors.hasOwnProperty("username") ?

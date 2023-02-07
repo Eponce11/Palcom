@@ -2,6 +2,8 @@ import React, { useEffect } from "react";
 import axios from "axios";
 import styles from "./styles/ChatSideBar.module.css"
 
+import userPic from "../static/User.png"
+
 import type { RootState } from "../app/store";
 
 import { useSelector, useDispatch } from "react-redux";
@@ -54,7 +56,7 @@ const ChatSideBar = () => {
                 chatsList.map( (chat:chatUser, idx:number) => {
                     return (
                         <li onClick={ () => { openChat(chat.id, chat.username) }} className={styles.selectChat} key={idx}>
-                            <div className={styles.fakeImg}></div>
+                            <img src={userPic} alt="" className={styles.fakeImg}/>
                             <h3>{chat.username}</h3>
                         </li>
                     )

@@ -3,6 +3,8 @@ import React, { useState } from 'react';
 import styles from './styles/SearchSideBar.module.css'
 import axios from 'axios';
 
+import userPic from "../static/User.png"
+
 import { VscAdd } from 'react-icons/vsc'
 
 const SearchSideBar = () => {
@@ -47,7 +49,7 @@ const SearchSideBar = () => {
             {
                 user.hasOwnProperty("id") ?
                     <div className={styles.user}>
-                        <div className={styles.fakeImg}></div>
+                        <img src={userPic} alt="" className={styles.fakeImg}/>
                         <h3>{ user.username }</h3>
                         <VscAdd className={styles.icon} onClick={ () => startChat(user.id) }></VscAdd>
                     </div> :

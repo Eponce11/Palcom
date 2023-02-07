@@ -3,6 +3,8 @@ import { Outlet } from "react-router-dom";
 
 import MenuSideBar from "../components/MenuSideBar";
 
+import userPic from "../static/User.png"
+
 import styles from './styles/Home.module.css';
 import axios from "axios";
 
@@ -99,7 +101,7 @@ const Home = () => {
                     <Outlet />
 
                     <div className={styles.userInfo}>
-                        <div className={styles.fakeImg}></div>
+                        <img src={userPic} alt="" className={styles.fakeImg}/>
                         <h3>{signedInUser.username}</h3>
                     </div>
                 </div>
@@ -108,7 +110,7 @@ const Home = () => {
 
                 <div className={styles.messageTab}>
                     <div className={styles.messageTabHeader}>
-                        <div className={styles.fakeImg}></div>
+                        <img src={userPic} alt="" className={styles.fakeImg}/>
                         <h2>{currentChatUser.username}</h2>
                     </div>
                     <div className={styles.messageReceive}>
