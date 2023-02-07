@@ -2,13 +2,10 @@ import express, { Application } from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv';
 import cookieParser from 'cookie-parser';
-// import { createServer } from 'http';
-
 
 const app: Application = express();
 const PORT: Number = 8000;
 const DB: String = "PalCom_db"
-// const httpServer = createServer(app);
 
 // middleware
 dotenv.config();
@@ -32,8 +29,6 @@ require("./webSockets")(server);
 
 
 
-
-// httpServer.listen(PORT, () => console.log(`Listening on port: ${PORT}`));
 
 
 
