@@ -5,6 +5,8 @@ import MenuSideBar from "../components/MenuSideBar";
 
 import userPic from "../static/User.png"
 
+import { RiSendPlaneFill } from "react-icons/ri";
+
 import styles from './styles/Home.module.css';
 import axios from "axios";
 
@@ -130,7 +132,9 @@ const Home = () => {
                     </div>
                     <div className={styles.messageInput}>
                         <input type="text" placeholder="Message User" value={message} onChange={ (e) => setMessage(e.target.value)} />
-                        <button onClick={sendMessage}>Send</button>
+                        <div  onClick={sendMessage}>
+                            <RiSendPlaneFill className={styles.sendIcon}/>
+                        </div>
                     </div>
                 </div>
 

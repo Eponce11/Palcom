@@ -110,11 +110,13 @@
 }
 
 .myMessage {
-    background-color: blue;
+    background-color: #06A382;
+    display: inline-block;
 }
 
 .othersMessage {
     background-color: red;
+    display: inline-block;
 }
 
 
@@ -130,25 +132,35 @@
     margin-bottom: 20px;
     padding: 10px;
     display: flex;
-    justify-content: flex-end;
+    position: relative;
+}
+
+.messageInput > div {
+    height: 40px;
+    width: 40px;
+    background-color: #06A382;
+    border-radius: 10px;
+    position: relative;
+    left: -5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.sendIcon {
+    height: 60%;
+    width: 80%;
 }
 
 .messageInput > input {
     flex-grow: 1;
     background-color: #1F1F25;
     border: none;
-    border-radius: 10px;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
     font-size: large;
     padding-left: 10px;
     color: white;
-}
-
-.messageInput > button {
-    width: 100px;
-    height: 100%;
-    margin-left: 10px;
-    font-size: large;
-    border-radius: 10px;
 }
 
 
